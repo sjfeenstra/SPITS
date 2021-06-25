@@ -1,0 +1,66 @@
+<section class="py-5 container">
+  <div class="row py-lg-5 justify-content-center">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1>Opdracht gegevens</h1>
+      <h2>Opdracht {{order.order_NR}}</h2>
+      <mat-tab-group dynamicHeight>
+        <mat-tab label="Details">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Instituut:</td>
+                <td>{{order.institute}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-tab>
+        <mat-tab label="Aanwezige batches">
+          <mat-form-field class="px-5">
+            <input matInput type="text" #filter (keyup)="doFilter(filter.value)" placeholder="Filter">
+          </mat-form-field>
+          <div>
+            <table mat-table [dataSource]="dataSource">
+
+              <ng-container matColumnDef="batch">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let batch"> {{batch.batch_NR}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let batch; columns: displayedColumns"
+                [routerLink]="['/batchDetails/', batch.batch_NR]"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+        </mat-tab>
+        <mat-tab label="Controles">
+          <div *ngFor="let check of checks">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{check.check_type}}
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Beschrijving:</td>
+                    <td>{{check.check_remarks}}</td>
+                  </tr>
+                  <tr>
+                    <td>Medewerker:</td>
+                    <td>{{check.checked_by}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-expansion-panel>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+      <br>
+      <button mat-raised-button color="primary" (click)="back()">Terug naar de opdrachtoverzicht</button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+.navbar-center {
+  position: relative;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+.navbar-right {
+  justify-content: flex-end;
+}

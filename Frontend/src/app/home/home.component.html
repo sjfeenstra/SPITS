@@ -1,0 +1,22 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5 justify-content-center">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1>Home</h1>
+      <div *ngIf="user">
+        <h3>Welkom {{user.firstName}} {{user.lastName}}</h3>
+        <wbr>
+        <wbr>
+        <div *ngIf="user.userType == 'Medewerker'" class="form-group">
+          <button mat-raised-button color="primary" routerLink="/controleLoggen">Scan een barcode om een controle te
+            loggen</button>
+        </div>
+
+        <div *ngIf="user.userType == 'Apotheker'" class="form-group">
+          <button mat-raised-button color="primary" routerLink="/orderOverview/False">Openstaande Opdrachten</button>
+          <button mat-raised-button color="primary" routerLink="/vrijgifte">Vrijgifte</button>
+          <button mat-raised-button color="primary" routerLink="/orderOverview/True">Opdrachten geschiedenis</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

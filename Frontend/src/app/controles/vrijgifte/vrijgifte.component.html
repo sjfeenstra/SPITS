@@ -1,0 +1,15 @@
+<section class="py-5 container">
+  <div class="row py-lg-5 justify-content-center">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1>{{title}}</h1>
+      <mat-selection-list #list [(ngModel)]="selectedOptions">
+        <mat-list-option *ngFor="let order of orders" [value]="order">
+          {{order.order_NR}}
+        </mat-list-option>
+      </mat-selection-list>
+      <mat-divider></mat-divider>
+      <button mat-raised-button color="primary" (click)="back()">Terug naar home pagina</button>
+      <button mat-raised-button color="primary" (click)="vrijgeven(); back()">Vrijgeven</button>
+    </div>
+  </div>
+</section>

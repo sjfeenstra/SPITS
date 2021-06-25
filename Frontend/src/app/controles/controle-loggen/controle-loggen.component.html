@@ -1,0 +1,42 @@
+<section class="py-5 container">
+  <div class="row py-lg-5 justify-content-center">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1>{{title}} ({{abstractieLevel}})</h1>
+      <br>
+      <mat-form-field appearance="standard">
+        <mat-label>Kies een abstractielevel</mat-label>
+        <mat-select [(value)]="abstractieLevel">
+          <mat-option value="Opdracht">Opdracht</mat-option>
+          <mat-option value="Batch">Batch</mat-option>
+          <mat-option value="MediRol">MediRol</mat-option>
+          <mat-option value="Zakje">Zakje</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <mat-form-field appearance="standard">
+        <mat-label>Kies een controle</mat-label>
+        <mat-select [(value)]="controle">
+          <mat-option value="Line clearance">Line clearance</mat-option>
+          <mat-option value="Opstartcontrole">Opstartcontrole</mat-option>
+          <mat-option value="Labelcontrole">Labelcontrole</mat-option>
+          <mat-option value="Perforatiecontrole">Perforatiecontrole</mat-option>
+          <mat-option value="Sealcontrole">Sealcontrole</mat-option>
+          <mat-option value="Scheurcontrole">Scheurcontrole</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <mat-form-field appearance="standard">
+        <mat-label>ID</mat-label>
+        <textarea [(ngModel)]="id" matInput placeholder="25"></textarea>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <mat-form-field appearance="standard">
+        <mat-label>Commentaar</mat-label>
+        <textarea [(ngModel)]="remarks" matInput rows="8" placeholder="Ex. Het zakje was......"></textarea>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <button mat-raised-button color="primary" (click)="back()">Terug naar home</button>
+      <button mat-raised-button color="primary" (click)="logControle()">{{controle}} loggen</button>
+    </div>
+  </div>
+</section>

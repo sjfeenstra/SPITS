@@ -1,0 +1,143 @@
+<section class="py-5 container">
+  <div class="row py-lg-5 justify-content-center">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1>Zakje Gegevens</h1>
+      <h3>Zakje {{bag.bag_NR}}</h3>
+      <mat-tab-group dynamicHeight>
+        <mat-tab label="Details">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Zakjes type:</td>
+                <td>{{bag.bag_type}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-tab>
+        <mat-tab label="Error's">
+          <div *ngFor="let error of errors">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{error.error}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Error Beschrijving: {{error.error_desc}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Patient:</td>
+                    <td>{{error.patient}}</td>
+                  </tr>
+                  <tr>
+                    <td>Pil / fout omschrijving:</td>
+                    <td>{{error.error_desc}}</td>
+                  </tr>
+                  <tr>
+                    <td>Vrije tekst:</td>
+                    <td>{{error.free_text}}</td>
+                  </tr>
+                  <tr>
+                    <td>Error datum:</td>
+                    <td>{{error.error_datetime}}</td>
+                  </tr>
+                  <tr>
+                    <td>Gecorrigeerd door:</td>
+                    <td>{{error.corrected_by}}</td>
+                  </tr>
+                  <tr>
+                    <td>Gecontroleerd door:</td>
+                    <td>{{error.checked_by}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div *ngIf="error.error=='TOO_LITTLE'">
+                <p>Toe te voegen pillen:</p>
+                <table mat-table [dataSource]="missingPills">
+
+                  <ng-container matColumnDef="pil_ID">
+                    <th mat-header-cell *matHeaderCellDef> Pil_ID </th>
+                    <td mat-cell *matCellDef="let pill"> {{pill.pil_ID}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="medication_name">
+                    <th mat-header-cell *matHeaderCellDef> Medicatie Naam </th>
+                    <td mat-cell *matCellDef="let pill"> {{pill.medication_name}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="free_text">
+                    <th mat-header-cell *matHeaderCellDef> Vrije tekst </th>
+                    <td mat-cell *matCellDef="let pill"> {{pill.free_text}} </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </mat-tab>
+        <mat-tab label="Ontbrekende Foto's">
+          <div *ngFor="let picture of missingPictures">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{picture.bag_NR}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Patient: {{picture.patient}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Patient:</td>
+                    <td>{{picture.patient}}</td>
+                  </tr>
+                  <tr>
+                    <td>Gecorrigeerd door:</td>
+                    <td>{{picture.corrected_by}}</td>
+                  </tr>
+                  <tr>
+                    <td>Gecontroleerd door:</td>
+                    <td>{{picture.checked_by}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-expansion-panel>
+          </div>
+        </mat-tab>
+        <mat-tab label="Controles">
+          <div *ngFor="let check of checks">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{check.check_type}}
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Beschrijving:</td>
+                    <td>{{check.check_remarks}}</td>
+                  </tr>
+                  <tr>
+                    <td>Medewerker:</td>
+                    <td>{{check.checked_by}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </mat-expansion-panel>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+      <br>
+      <button mat-raised-button color="primary" (click)="back()">Terug naar de roloverzicht</button>
+      <button mat-raised-button color="primary" (click)="back()">Opdracht Markeren</button>
+    </div>
+  </div>
+</section>
